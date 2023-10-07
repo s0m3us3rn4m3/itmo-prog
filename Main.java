@@ -40,11 +40,6 @@ class Main {
             }
             System.out.println();
         }
-        double xx = -5.5;
-        System.out.println(Math.asin(Math.pow(Math.E, Math.cbrt(-Math.pow(4/Math.abs(xx),xx)))));
-        System.out.println(Math.pow(Math.cbrt(Math.pow(xx, xx-3/4)), 3+Math.cos(Math.cbrt(xx))));
-        System.out.println(Math.pow(Math.cbrt(Math.pow(xx, xx-3/4)), xx));
-        System.out.println(Math.pow(0.25 - Math.pow(Math.cbrt(Math.pow(xx, xx-3/4)), 3+Math.cos(Math.cbrt(xx))), Math.asin(Math.pow(Math.E, Math.cbrt(-Math.pow(4/Math.abs(xx),xx))))));
 
         // for (int i = 0; i < 15; ++i)
         // System.out.println(x[i]);
