@@ -5,4 +5,8 @@ prog/l1/
 prog/l2/gradle-8.5/
 prog/l2/proj/build
 prog/l2/proj/bin
+prog/l2/proj/.gradle/
+prog/l2/proj/gradle/
+prog/l2/proj/gradlew
+prog/l2/proj/gradlew.bat
 prog/l2/gradle-8.5-bin.zip
