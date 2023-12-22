@@ -4,7 +4,7 @@ cd lab0
 chmod 620 dragonair4
 chmod 355 jynx0
 chmod 620 jynx0/sewaddle
-chmod 440 jynx0/forretress
+chmod u=r,g=r,o-rwx jynx0/forretress
 chmod 333 jynx0/timburr
 chmod 604 jynx0/fraxure
 chmod 640 jynx0/bisharp
