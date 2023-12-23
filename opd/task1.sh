@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 mkdir lab0
 cd lab0

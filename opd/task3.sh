@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 cd lab0
 cp dragonair4 psyduck2/feebas

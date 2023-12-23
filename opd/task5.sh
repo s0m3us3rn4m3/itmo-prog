@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 cd lab0
 chmod 777 ./jynx0/sewaddle && rm -f  ./jynx0/sewaddle

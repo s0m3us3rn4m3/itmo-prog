@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 cd lab0
 chmod 620 dragonair4
