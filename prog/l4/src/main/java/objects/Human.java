@@ -13,7 +13,7 @@ public class Human implements VoiceActions, MentalActions, PhysicalActions {
     private String name;
     private int age;
 
-    static public class InvalidAgeException extends RuntimeException {
+    static public class InvalidAgeException extends ObjectException {
         InvalidAgeException() {
             super("Возраст должен быть от 0 до 100");
         }
