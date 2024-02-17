@@ -1,5 +1,19 @@
 inf/
 opd/lab0/
+
 prog/gradle-8.5-bin.zip
-prog/jadx-gui/
 prog/l1/
+prog/**/.gradle/
+
+prog/l3/gradle-8.5/
+
+# prog/**/proj/bin/
+# prog/**/proj/gradle/
+# prog/**/proj/gradlew
+# prog/**/proj/gradlew.bat
+
+prog/**/bin/
+prog/**/build/
+prog/**/gradle/
+prog/**/gradlew
+prog/**/gradlew.bat

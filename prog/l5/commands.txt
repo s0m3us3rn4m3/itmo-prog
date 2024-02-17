@@ -1,0 +1,10 @@
+insert asdf
+g
+1
+2
+3
+
+SCIENCE_FICTION
+G
+
+save

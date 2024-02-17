@@ -1,0 +1,17 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'main.java.Main'
+
+repositories { 
+    mavenCentral() 
+}
+
+jar {
+    archiveBaseName = 'example'
+    archiveVersion =  '0.1.0'
+}
+
+run {
+    standardInput = System.in
+}
