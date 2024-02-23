@@ -119,7 +119,7 @@ public class Movie implements Comparable<Movie> {
         while (m.genre == null) {
             System.out.print("Введите жанр (COMEDY / TRAGEDY / THRILLER / HORROR / SCIENCE_FICTION): ");
             try {
-                m.genre = MovieGenre.valueOf(input.nextLine());
+                m.genre = MovieGenre.valueOf(input.nextLine().toUpperCase());
             } catch (IllegalArgumentException e) {
                 m.genre = null;
             }
@@ -128,7 +128,7 @@ public class Movie implements Comparable<Movie> {
         while (m.mpaaRating == null) {
             System.out.print("Введите рейтинг (G / PG / R): ");
             try {
-                m.mpaaRating = MpaaRating.valueOf(input.nextLine());
+                m.mpaaRating = MpaaRating.valueOf(input.nextLine().toUpperCase());
             } catch (IllegalArgumentException e) {
                 m.mpaaRating = null;
             }

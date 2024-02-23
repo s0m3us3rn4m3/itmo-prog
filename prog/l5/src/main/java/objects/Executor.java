@@ -1,6 +1,7 @@
 package objects;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -9,9 +10,12 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Deque;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.TreeMap;
 
 import javax.xml.parsers.SAXParser;
@@ -35,10 +39,141 @@ public class Executor {
     private Scanner input;
     private String file_to_save;
     private Deque<String> history;
+    private Set<String> execute_script_stack;
+    private Map<String, ProcessingMethod> method_map;
+
+    private void initMethodMap() {
+        this.method_map = new HashMap<String, ProcessingMethod>();
+        method_map.put("help", new ProcessingMethod() {
+            public int method(String[] args) {
+                help();
+                return 0;
+            }
+        });
+        method_map.put("info", new ProcessingMethod() {
+            public int method(String[] args) {
+                info();
+                return 0;
+            }
+        });
+        method_map.put("show", new ProcessingMethod() {
+            public int method(String[] args) {
+                show();
+                return 0;
+            }
+        });
+        method_map.put("insert", new ProcessingMethod() {
+            public int method(String[] args) {
+                if (args.length < 2) {
+                    error();
+                    return 0;
+                }
+                insert(args[1]);
+                return 0;
+            }
+        });
+        method_map.put("update", new ProcessingMethod() {
+            public int method(String[] args) {
+                if (args.length < 2) {
+                    error();
+                    return 0;
+                }
+                update(args[1]);
+                return 0;
+            }
+        });
+        method_map.put("remove_key", new ProcessingMethod() {
+            public int method(String[] args) {
+                if (args.length < 2) {
+                    error();
+                    return 0;
+                }
+                remove_key(args[1]);
+                return 0;
+            }
+        });
+        method_map.put("clear", new ProcessingMethod() {
+            public int method(String[] args) {
+                clear();
+                return 0;
+            }
+        });
+        method_map.put("save", new ProcessingMethod() {
+            public int method(String[] args) {
+                save();
+                return 0;
+            }
+        });
+        method_map.put("execute_script", new ProcessingMethod() {
+            public int method(String[] args) {
+                if (args.length < 2) {
+                    error();
+                    return 0;
+                }
+                execute_script(args[1]);
+                return 0;
+            }
+        });
+        method_map.put("exit", new ProcessingMethod() {
+            public int method(String[] args) {
+                return 1;
+            }
+        });
+        method_map.put("remove_greater", new ProcessingMethod() {
+            public int method(String[] args) {
+                remove_greater();
+                return 0;
+            }
+        });
+        method_map.put("history", new ProcessingMethod() {
+            public int method(String[] args) {
+                print_history();
+                return 0;
+            }
+        });
+        method_map.put("replace_if_lowe", new ProcessingMethod() {
+            public int method(String[] args) {
+                if (args.length < 2) {
+                    error();
+                    return 0;
+                }
+                replace_if_lowe(args[1]);
+                return 0;
+            }
+        });
+        method_map.put("count_less_than_genre", new ProcessingMethod() {
+            public int method(String[] args) {
+                if (args.length < 2) {
+                    error();
+                    return 0;
+                }
+                count_less_than_genre(args[1]);
+                return 0;
+            }
+        });
+        method_map.put("filter_less_than_usa_box_office", new ProcessingMethod() {
+            public int method(String[] args) {
+                if (args.length < 2) {
+                    error();
+                    return 0;
+                }
+                filter_less_than_usa_box_office(args[1]);
+                return 0;
+            }
+        });
+        method_map.put("print_descending", new ProcessingMethod() {
+            public int method(String[] args) {
+                print_descending();
+                return 0;
+            }
+        });
+    }
 
     public Executor(Scanner input, String file_to_save) {
         this.collection = new TreeMap<String, Movie>();
         this.history = new ArrayDeque<String>();
+        this.execute_script_stack = new HashSet<String>();
+        initMethodMap();
         this.input = input;
         this.file_to_save = file_to_save;
 
@@ -52,9 +187,11 @@ public class Executor {
         }
     }
 
-    public Executor(Scanner input, String file_to_save, Map<String, Movie> collection) {
+    public Executor(Scanner input, String file_to_save, Map<String, Movie> collection, Set<String> exec_stack) {
         this.collection = collection;
         this.history = new ArrayDeque<String>();
+        this.execute_script_stack = exec_stack;
+        initMethodMap();
         this.input = input;
         this.file_to_save = file_to_save;
     }
@@ -71,9 +208,18 @@ public class Executor {
         }
         while (input.hasNextLine()) {
             String line = input.nextLine();
-            int res = process_cmd(line);
-            if (res != 0) {
-                return;
+            String[] args = line.split(" ");
+            if (method_map.containsKey(args[0].toLowerCase())) {
+                int res = method_map.get(args[0]).method(args);
+                if (res != 0) {
+                    return;
+                }
+                history.addFirst(args[0]);
+                if (history.size() > 7) {
+                    history.removeLast();
+                }
+            } else {
+                error();
             }
             if (print_prefix) {
                 System.out.print("> ");
@@ -82,98 +228,10 @@ public class Executor {
     }
 
     /**
-     * Выполнить одну команду
-     * 
-     * @param line команда с аргументами
-     * @return 1, если выполнилась комадна exit, иначе 0
+     * Интерфейс для команды
      */
-    int process_cmd(String line) {
-        String[] args = line.split(" ");
-        switch (args[0]) {
-            case "help":
-                help();
-                break;
-            case "info":
-                info();
-                break;
-            case "show":
-                show();
-                break;
-            case "insert":
-                if (args.length != 2) {
-                    error();
-                    return 0;
-                }
-                insert(args[1]);
-                break;
-            case "update":
-                if (args.length != 2) {
-                    error();
-                    return 0;
-                }
-                update(args[1]);
-                break;
-            case "remove_key":
-                if (args.length != 2) {
-                    error();
-                    return 0;
-                }
-                remove_key(args[1]);
-                break;
-            case "clear":
-                clear();
-                break;
-            case "save":
-                save();
-                break;
-            case "execute_script":
-                if (args.length != 2) {
-                    error();
-                    return 0;
-                }
-                execute_script(args[1]);
-                break;
-            case "exit":
-                return 1;
-            case "remove_greater":
-                remove_greater();
-                break;
-            case "history":
-                print_history();
-                break;
-            case "replace_if_lowe":
-                if (args.length != 2) {
-                    error();
-                    return 0;
-                }
-                replace_if_lowe(args[1]);
-                break;
-            case "count_less_than_genre":
-                if (args.length != 2) {
-                    error();
-                    return 0;
-                }
-                count_less_than_genre(args[1]);
-                break;
-            case "filter_less_than_usa_box_office":
-                if (args.length != 2) {
-                    error();
-                    return 0;
-                }
-                filter_less_than_usa_box_office(args[1]);
-                break;
-            case "print_descending":
-                print_descending();
-                break;
-            default:
-                error();
-                return 0;
-        }
-        history.addFirst(args[0]);
-        if (history.size() > 7) {
-            history.removeLast();
-        }
-        return 0;
+    public interface ProcessingMethod {
+        public int method(String[] args);
     }
 
     void print_descending() {
@@ -238,10 +296,18 @@ public class Executor {
 
     void execute_script(String script_path) {
         try {
+            File file = new File(script_path);
+            if (execute_script_stack.contains(file.getAbsolutePath())) {
+                System.out.println("Recursion detected");
+                return;
+            }
+            System.out.println(file.getAbsolutePath());
+            execute_script_stack.add(file.getAbsolutePath());
             Scanner s = new Scanner(new BufferedInputStream(new FileInputStream(script_path)));
             try {
-                Executor e = new Executor(s, file_to_save, collection);
+                Executor e = new Executor(s, file_to_save, collection, execute_script_stack);
                 e.process(false);
+                execute_script_stack.remove(file.getAbsolutePath());
                 this.collection = e.collection;
             } finally {
                 s.close();
@@ -314,8 +380,12 @@ public class Executor {
     }
 
     void update(String key) {
-        Movie movie = Movie.read_from_scanner(input);
-        collection.replace(key, movie);
+        if (!collection.containsKey(key)) {
+            System.out.println("Нет такого ключа");
+        } else {
+            Movie movie = Movie.read_from_scanner(input);
+            collection.replace(key, movie);
+        }
     }
 
     void insert(String key) {

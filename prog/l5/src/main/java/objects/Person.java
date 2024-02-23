@@ -52,7 +52,7 @@ public class Person {
         while (p.nationality == null) {
             try {
                 System.out.print("Введите страну (UNITED_KINGDOM / SPAIN / INDIA / VATICAN): ");
-                p.nationality = Country.valueOf(input.nextLine());
+                p.nationality = Country.valueOf(input.nextLine().toUpperCase());
             } catch (IllegalArgumentException e) {
                 p.nationality = null;
             }
