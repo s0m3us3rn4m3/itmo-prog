@@ -21,7 +21,7 @@ public class Coordinates {
      * @param input поток ввода
      * @return сгенерированный класс
      */
-    static public Coordinates read_from_scanner(Scanner input) {
+    static public Coordinates readFromScanner(Scanner input) {
         Coordinates c = new Coordinates();
 
         while (c.x == null) {

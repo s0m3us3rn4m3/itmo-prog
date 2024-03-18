@@ -81,7 +81,7 @@ public class Movie implements Comparable<Movie> {
      * @param input поток ввода
      * @return cчитанный фильм
      */
-    static public Movie read_from_scanner(Scanner input) {
+    static public Movie readFromScanner(Scanner input) {
         Movie m = new Movie();
         m.id = Math.abs(ThreadLocalRandom.current().nextLong());
         m.creationDate = ZonedDateTime.now();
@@ -91,7 +91,7 @@ public class Movie implements Comparable<Movie> {
             m.name = input.nextLine();
         }
 
-        m.coordinates = Coordinates.read_from_scanner(input);
+        m.coordinates = Coordinates.readFromScanner(input);
 
         while (m.oscarsCount == null || m.oscarsCount <= 0) {
             System.out.print("Введите число оскаров: ");
@@ -137,7 +137,7 @@ public class Movie implements Comparable<Movie> {
         System.out.print("Хотите ли вы указать сценариста (Y / any other key): ");
         String ch = input.nextLine();
         if (ch.trim().equals("Y")) {
-            m.screenwriter = Person.read_from_scanner(input);
+            m.screenwriter = Person.readFromScanner(input);
         }
 
         return m;

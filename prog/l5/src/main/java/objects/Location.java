@@ -26,7 +26,7 @@ public class Location {
      * @param input поток ввода
      * @return сгенерированный класс
      */
-    static public Location read_from_scanner(Scanner input) {
+    static public Location readFromScanner(Scanner input) {
         Location l = new Location();
 
         while (l.x == null) {

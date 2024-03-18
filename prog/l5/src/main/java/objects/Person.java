@@ -31,7 +31,7 @@ public class Person {
      * @param input поток ввода
      * @return сгенерированный класс
      */
-    static public Person read_from_scanner(Scanner input) {
+    static public Person readFromScanner(Scanner input) {
         Person p = new Person();
 
         while (p.name == null || p.name.isEmpty()) {
@@ -58,7 +58,7 @@ public class Person {
             }
         }
 
-        p.location = Location.read_from_scanner(input);
+        p.location = Location.readFromScanner(input);
 
         return p;
     }
