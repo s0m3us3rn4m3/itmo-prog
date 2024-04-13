@@ -1,0 +1,20 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'main.java.Client'
+
+repositories { 
+    mavenCentral() 
+}
+
+jar {
+    manifest { 
+        attributes "Main-Class": "$mainClassName"
+    }
+
+    archiveBaseName = 'client'
+}
+
+run {
+    standardInput = System.in
+}
