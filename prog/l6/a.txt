@@ -1,4 +1,3 @@
-history
 info
 info
 execute_script b.txt

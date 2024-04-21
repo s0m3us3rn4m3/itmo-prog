@@ -47,6 +47,8 @@ public class Server {
                     server.close();
                 }
             }
-        } catch (IOException e) {}
+        } catch (Exception e) {
+            System.out.printf("error: %s\n", e.toString());
+        }
     }
 }

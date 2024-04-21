@@ -42,13 +42,17 @@ public class Executor {
                 return "help : вывести справку по доступным командам";
             }
 
+            private String msg;
+
             @Override
             public String exec(String[] args) {
                 addToHistory(args[0]);
-                String msg = "";
-                for (CommandInterface command : commandMap.values()) {
-                    msg += command.getDescription() + '\n';
-                }
+                msg = "";
+                msg = "";
+                commandMap.entrySet().stream()
+                    .filter(entry -> !entry.getKey().equals("save"))
+                    .sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey()))
+                    .forEach(entry -> msg += entry.getValue().getDescription() + '\n');
                 return msg;
             }
             
@@ -76,17 +80,13 @@ public class Executor {
     }
 
 
-    public Executor(Scanner input, String fileToSave) {
+    public Executor(Scanner input, String fileToSave) throws Exception {
         state = new State();
         state.setFileToSave(fileToSave);
         state.setInput(input);
         initMethodMap();
 
-        try {
-            state.parseFileToSave();
-        } catch (Exception e) {
-            System.out.printf("Не удалось загрузить файл: %s\n", e);
-        }
+        state.parseFileToSave();
     }
 
     public Executor(Scanner input, State old_state) {
@@ -149,6 +149,7 @@ public class Executor {
 
     public void serve(ServerSocket srv) throws IOException {
         Socket sock = null;
+        System.out.printf("listening at %d\n", srv.getLocalPort());
         while (true) {
             try {
                 sock = srv.accept();

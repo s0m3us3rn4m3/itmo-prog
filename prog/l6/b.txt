@@ -1,2 +1,2 @@
-history
-#yexecute_script a.txt
+info
+execute_script a.txt

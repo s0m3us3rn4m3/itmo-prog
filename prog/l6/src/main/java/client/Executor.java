@@ -51,10 +51,16 @@ public class Executor {
         commands.put("print_descending", new PrintDescendingCommand());
     }
 
-    public Executor(Scanner in, int port) {
+    private void ping(int port) throws Exception {
+        Socket sock = new Socket("localhost", port);
+        sock.close();
+    }
+
+    public Executor(Scanner in, int port) throws Exception {
         this();
         this.in = in;
         this.port = port;
+        ping(port);
     }
 
     public void run() {
@@ -102,7 +108,9 @@ public class Executor {
             } catch (ClassNotFoundException e) {
                 System.out.printf("reading response err: %s\n", e);
             } finally {
-                sock.close();
+                if (sock != null) {
+                    sock.close();
+                }
             }
         } catch (IOException e) {}
         return null;
