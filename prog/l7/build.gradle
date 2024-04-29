@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+repositories { 
+    mavenCentral() 
+}
+
+
+
+jar {
+    manifest { 
+        attributes "Main-Class": "main.java.Client"
+    }
+
+    
+
+    archiveBaseName = 'client'
+}
+
+run {
+    standardInput = System.in
+}

@@ -1,0 +1,5 @@
+login
+q
+q
+info
+execute_script b.txt
