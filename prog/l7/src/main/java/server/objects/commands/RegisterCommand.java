@@ -22,7 +22,7 @@ public class RegisterCommand extends Command {
             }
             PreparedStatement s = state.getConn().prepareStatement("INSERT INTO users (username, password) VALUES (?, ?)");
             s.setString(1, creds.getLogin());
-            s.setString(2, Utils.hashPassword(creds.getPassword()));
+            s.setString(2, creds.getPassword());
             int res = s.executeUpdate();
             return res == 1;
         } catch (Exception e) {

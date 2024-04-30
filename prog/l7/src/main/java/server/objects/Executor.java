@@ -190,6 +190,7 @@ public class Executor {
                 res += "Введена некорректная команда. Для просмотра списка команд ввеедите help";
             }
             res += '\n';
+            System.out.printf("executing %s\n", cmd);
         }
         return res;
     }

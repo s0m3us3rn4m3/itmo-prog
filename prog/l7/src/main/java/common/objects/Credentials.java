@@ -1,11 +1,20 @@
 package common.objects;
 
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
 public class Credentials implements Serializable {
     private String login;
     private String password;
+
+    static private String hashPassword(String password) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("SHA-224");
+        byte[] messageDigest = md.digest(password.getBytes());
+        return String.format("%032x", new BigInteger(1, messageDigest));
+    }
 
     static public Credentials readFromScanner(Scanner input, boolean verbose) {
         Credentials c = new Credentials();
@@ -15,11 +24,17 @@ public class Credentials implements Serializable {
             }
             c.login = input.nextLine();
         }
-        while (c.password == null || c.password.isEmpty()) {
+        String password = null;
+        while (password == null || password.isEmpty()) {
             if (verbose) {
                 System.out.println("Введите пароль: ");
             }
-            c.password = input.nextLine();
+            password = input.nextLine();
+        }
+        try {
+            c.password = hashPassword(password);
+        } catch (NoSuchAlgorithmException e) {
+            c.password = password;
         }
         return c;
     }

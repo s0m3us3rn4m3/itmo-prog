@@ -36,12 +36,6 @@ public class Utils {
         }
     }
 
-    public static String hashPassword(String password) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("SHA-224");
-        byte[] messageDigest = md.digest(password.getBytes());
-        return String.format("%032x", new BigInteger(1, messageDigest));
-    }
-
     public static boolean userExists(Connection conn, String username) {
         try {
             PreparedStatement s = conn.prepareStatement("SELECT username FROM users WHERE username=?");
@@ -147,11 +141,12 @@ public class Utils {
 
     private static int insertLocationToDB(Connection conn, Location l) throws SQLException {
         PreparedStatement s = conn.prepareStatement(
-            "INSERT INTO locations (x, y, z) VALUES (?, ?, ?) RETURNING id;"
+            "INSERT INTO locations (x, y, z, name) VALUES (?, ?, ?, ?) RETURNING id;"
         );
         s.setDouble(1, l.getX());
         s.setDouble(2, l.getY());
         s.setDouble(3, l.getZ());
+        s.setString(4, l.getName());
         ResultSet res = s.executeQuery();
         if (!res.next()) {
             throw new SQLException();

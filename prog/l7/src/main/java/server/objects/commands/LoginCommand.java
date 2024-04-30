@@ -18,10 +18,9 @@ public class LoginCommand extends Command {
 
     public boolean validCreds(Credentials creds) {
         try {
-            String hashedPassword = Utils.hashPassword(creds.getPassword());
             PreparedStatement s = state.getConn().prepareStatement("SELECT username FROM users WHERE username=? AND password=?");
             s.setString(1, creds.getLogin());
-            s.setString(2, hashedPassword);
+            s.setString(2, creds.getPassword());
             ResultSet res = s.executeQuery();
             return res.next();
         } catch (Exception e) {
