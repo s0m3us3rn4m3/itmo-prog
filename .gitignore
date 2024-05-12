@@ -6,6 +6,8 @@ prog/l1/
 prog/**/.gradle/
 
 prog/l3/gradle-8.5/
+# prog/l8/javafx-sdk-22.0.1/
+prog/l8/**
 
 # prog/**/proj/bin/
 # prog/**/proj/gradle/

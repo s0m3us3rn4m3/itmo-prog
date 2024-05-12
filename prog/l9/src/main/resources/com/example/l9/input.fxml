@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="650" prefWidth="360" style="-fx-background-color: #8efaa8;"
+            xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.l9.client.controllers.InputController">
+    <Label fx:id="keyLabel" layoutX="10" layoutY="10" prefHeight="30" prefWidth="150" style="-fx-font: 14 'Roboto'"/>
+    <TextField fx:id="keyTextField" layoutX="150" layoutY="10" prefHeight="30" prefWidth="200"
+               style="-fx-font: 14 'Roboto'"/>
+
+    <Label fx:id="nameLabel" layoutX="10" layoutY="50" prefHeight="30" prefWidth="150" style="-fx-font: 14 'Roboto'"/>
+    <TextField fx:id="nameTextField" layoutX="150" layoutY="50" prefHeight="30" prefWidth="200"
+               style="-fx-font: 14 'Roboto'"/>
+
+    <Label fx:id="xLabel" layoutX="10" layoutY="90" prefHeight="30" prefWidth="30" style="-fx-font: 14 'Roboto'"/>
+    <TextField fx:id="xTextField" layoutX="40" layoutY="90" prefHeight="30" prefWidth="110" style="-fx-font: 14 'Roboto'"/>
+
+    <Label fx:id="yLabel" layoutX="170" layoutY="90" prefHeight="30" prefWidth="30" style="-fx-font: 14 'Roboto'"/>
+    <TextField fx:id="yTextField" layoutX="200" layoutY="90" prefHeight="30" prefWidth="110" style="-fx-font: 14 'Roboto'"/>
+
+    <Label fx:id="oscarsLabel" layoutX="10" layoutY="130" prefHeight="30" prefWidth="150" style="-fx-font: 14 'Roboto'"/>
+    <TextField fx:id="oscarsTextField" layoutX="150" layoutY="130" prefHeight="30" prefWidth="200"
+               style="-fx-font: 14 'Roboto'"/>
+
+    <Label fx:id="usaBoxOfficeLabel" layoutX="10" layoutY="170" prefHeight="30" prefWidth="150" style="-fx-font: 14 'Roboto'"/>
+    <TextField fx:id="usaBoxOfficeTextField" layoutX="150" layoutY="170" prefHeight="30" prefWidth="200"
+               style="-fx-font: 14 'Roboto'"/>
+
+    <Label fx:id="genreLabel" layoutX="10" layoutY="210" prefHeight="30" prefWidth="60" style="-fx-font: 14 'Roboto'"/>
+    <ChoiceBox fx:id="genreChoiceBox" layoutX="70" layoutY="210" prefHeight="30" prefWidth="110"/>
+
+    <Label fx:id="mpaaRatingLabel" layoutX="200" layoutY="210" prefHeight="30" prefWidth="100" style="-fx-font: 14 'Roboto'"/>
+    <ChoiceBox fx:id="mpaaRatingChoiceBox" layoutX="300" layoutY="210" prefHeight="30" prefWidth="50"/>
+
+    <Label fx:id="addScreenwriterLabel" layoutX="10" layoutY="250" prefHeight="30" prefWidth="180" style="-fx-font: 14 'Roboto'"/>
+    <CheckBox fx:id="addScreenwriterCheckBox" layoutX="180" layoutY="250" prefHeight="30" />
+
+    <Label fx:id="screenwriterNameLabel" layoutX="10" layoutY="290" prefHeight="30" prefWidth="150" style="-fx-font: 14 'Roboto'"/>
+    <TextField fx:id="screenwriterNameTextField" layoutX="150" layoutY="290" prefHeight="30" prefWidth="200"/>
+
+    <Label fx:id="screenwriterHeightLabel" layoutX="10" layoutY="330" prefHeight="30" prefWidth="150" style="-fx-font: 14 'Roboto'"/>
+    <TextField fx:id="screenwriterHeightTextField" layoutX="150" layoutY="330" prefHeight="30" prefWidth="200"/>
+
+    <Label fx:id="screenwriterNationalityLabel" layoutX="10" layoutY="370" prefHeight="30" prefWidth="150" style="-fx-font: 14 'Roboto'"/>
+    <ChoiceBox fx:id="screenwriterNationalityChoiceBox" layoutX="150" layoutY="370" prefHeight="30" prefWidth="100"/>
+
+    <Label fx:id="screenwriterLocationLabel" layoutX="10" layoutY="410" prefHeight="30" prefWidth="150" style="-fx-font: 14 'Roboto'"/>
+    <TextField fx:id="screenwriterLocationTextField" layoutX="150" layoutY="410" prefHeight="30" prefWidth="200"/>
+
+    <Label fx:id="screenwriterXLabel" layoutX="10" layoutY="450" prefHeight="30" prefWidth="150" style="-fx-font: 14 'Roboto'"/>
+    <TextField fx:id="screenwriterXTextField" layoutX="150" layoutY="450" prefHeight="30" prefWidth="200"/>
+
+    <Label fx:id="screenwriterYLabel" layoutX="10" layoutY="490" prefHeight="30" prefWidth="150" style="-fx-font: 14 'Roboto'"/>
+    <TextField fx:id="screenwriterYTextField" layoutX="150" layoutY="490" prefHeight="30" prefWidth="200"/>
+
+    <Label fx:id="screenwriterZLabel" layoutX="10" layoutY="530" prefHeight="30" prefWidth="150" style="-fx-font: 14 'Roboto'"/>
+    <TextField fx:id="screenwriterZTextField" layoutX="150" layoutY="530" prefHeight="30" prefWidth="200"/>
+
+    <Label fx:id="errorLabel" layoutX="10" layoutY="570" style="-fx-text-fill: #ff0000" prefWidth="350"/>
+
+    <Button fx:id="okButton" layoutX="10" layoutY="610" mnemonicParsing="false" onAction="#ok" prefHeight="30"
+            prefWidth="165" text="OK"/>
+    <Button fx:id="cancelButton" layoutX="190" layoutY="610" mnemonicParsing="false" onAction="#cancel" prefHeight="30"
+            prefWidth="165" text="Cancel"/>
+</AnchorPane>

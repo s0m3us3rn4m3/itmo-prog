@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane prefHeight="700" prefWidth="1200" style="-fx-background-color: #8efaa8;" xmlns="http://javafx.com/javafx/16"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.l9.client.controllers.MainController">
+    <ComboBox fx:id="languageComboBox" layoutX="2" layoutY="5" prefWidth="100" prefHeight="30"/>
+    <Label fx:id="userLabel" layoutX="110" layoutY="5" style="-fx-font: 16 'Roboto'" prefHeight="30"/>
+    <FlowPane layoutX="2" layoutY="40" vgap="2" prefHeight="462" prefWidth="300" style="-fx-background-color: #ffffff;">
+        <Button fx:id="helpButton" mnemonicParsing="false" style="-fx-font: 16 'Roboto'" onAction="#help"
+                prefWidth="300"/>
+        <Button fx:id="infoButton" mnemonicParsing="false" style="-fx-font: 16 'Roboto'" onAction="#info"
+                prefWidth="300"/>
+        <Button fx:id="insertButton" mnemonicParsing="false" style="-fx-font: 16 'Roboto'" onAction="#insert"
+                prefWidth="300"/>
+        <Button fx:id="updateButton" mnemonicParsing="false" style="-fx-font: 16 'Roboto'" onAction="#update"
+                prefWidth="300"/>
+        <Button fx:id="removeButton" mnemonicParsing="false" style="-fx-font: 16 'Roboto'" onAction="#remove"
+                prefWidth="300"/>
+        <Button fx:id="clearButton" mnemonicParsing="false" style="-fx-font: 16 'Roboto'" onAction="#clear"
+                prefWidth="300"/>
+        <Button fx:id="executeScriptButton" mnemonicParsing="false" style="-fx-font: 16 'Roboto'"
+                onAction="#executeScript" prefWidth="300"/>
+        <Button fx:id="removeGreaterButton" mnemonicParsing="false" style="-fx-font: 16 'Roboto'"
+                onAction="#removeGreater" prefHeight="30" prefWidth="300"/>
+        <Button fx:id="replaceIfLoweButton" mnemonicParsing="false" style="-fx-font: 16 'Roboto'"
+                onAction="#replaceIfLowe" prefHeight="30" prefWidth="300"/>
+        <Button fx:id="countLessThanGenreButton" mnemonicParsing="false" style="-fx-font: 16 'Roboto'"
+                onAction="#countLessThanGenre" prefHeight="30" prefWidth="300"/>
+        <Button fx:id="filterLessThanUsaBoxOfficeButton" mnemonicParsing="false" style="-fx-font: 16 'Roboto'"
+                onAction="#filterLessThanUsaBoxOffice"
+                prefWidth="300"/>
+        <Button fx:id="printDescendingButton" mnemonicParsing="false" style="-fx-font: 16 'Roboto'"
+                onAction="#printDescending" prefWidth="300"/>
+        <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exit" style="-fx-font: 16 'Roboto'"
+                prefWidth="300"/>
+        <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logout" style="-fx-font: 16 'Roboto'"
+                prefWidth="300"/>
+    </FlowPane>
+
+    <TabPane layoutX="304" layoutY="40" prefHeight="462" prefWidth="894" tabClosingPolicy="UNAVAILABLE">
+        <Tab fx:id="tableTab">
+            <TableView fx:id="moviesTable" prefHeight="463" prefWidth="894">
+                <columns>
+                    <TableColumn fx:id="userColumn"/>
+                    <TableColumn fx:id="idColumn" prefWidth="30"/>
+                    <TableColumn fx:id="keyColumn"/>
+                    <TableColumn fx:id="nameColumn"/>
+                    <TableColumn fx:id="xColumn" prefWidth="30"/>
+                    <TableColumn fx:id="yColumn" prefWidth="30"/>
+                    <TableColumn fx:id="dateColumn"/>
+                    <TableColumn fx:id="oscarsColumn" prefWidth="30"/>
+                    <TableColumn fx:id="usaBoxOfficeColumn"/>
+                    <TableColumn fx:id="genreColumn" prefWidth="30"/>
+                    <TableColumn fx:id="mpaaRatingColumn" prefWidth="30"/>
+
+                    <TableColumn fx:id="screenwriterNameColumn"/>
+                    <TableColumn fx:id="screenwriterHeightColumn" prefWidth="30"/>
+                    <TableColumn fx:id="screenwriterNationalityColumn"/>
+                    <TableColumn fx:id="screenwriterLocationColumn"/>
+                    <TableColumn fx:id="screenwriterXColumn" prefWidth="30"/>
+                    <TableColumn fx:id="screenwriterYColumn" prefWidth="30"/>
+                    <TableColumn fx:id="screenwriterZColumn" prefWidth="30"/>
+                </columns>
+            </TableView>
+        </Tab>
+        <Tab fx:id="visualTab">
+            <AnchorPane fx:id="visualPane" prefHeight="462" prefWidth="894" style="-fx-background-color: white;"/>
+        </Tab>
+    </TabPane>
+
+    <TextArea fx:id="logTextArea" scrollTop="Infinity" wrapText="true" editable="false" layoutX="2" layoutY="504" prefHeight="194" prefWidth="1196"
+              style="-fx-background-color: ffffff; -fx-font: 16 'Roboto'"/>
+</AnchorPane>
